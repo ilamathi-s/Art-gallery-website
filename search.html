@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery Search</title>
+    <style>
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #search-bar {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        #filter-icon {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #art-work-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .art-work-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .art-work-item img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+
+        .art-work-details {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Search bar and filter icon -->
+    <div class="search-container">
+        <input type="search" id="search-bar" placeholder="Search artist name">
+        <button id="filter-icon"><i class="fa fa-filter"></i></button>
+    </div>
+
+    <!-- Art work list -->
+    <ul id="art-work-list">
+        <!-- Art work list items will be generated dynamically -->
+    </ul>
+
+    <script>
+        const artWorks = [
+            { name: 'Marco Mazzoni', location: 'Italian Artist', year: '2010', images: ['1.jpg'], price: '$150' },
+            { name: 'Paul Cadden', location: 'Scottish contemporary Artist', year: '2012', images: ['2.jpg'], price: '$200' },
+            { name: 'Leon Kossoff', location: 'British Figurative Painter', year: '2011', images: ['3.jpg'], price: '$550' },
+            { name: 'Dennis Creffield', location: 'British Artist', year: '2014', images: ['4.jpg'], price: '$200' },
+            { name: 'Jerry LoFaro', location: 'Spanish Artist', year: '2017', images: ['5.jpg'], price: '$650' },
+            { name: 'Salvador Dalí', location: 'Modern Artist', year: '2014', images: ['6.jpg'], price: '$350' },
+            { name: 'James Ensor', location: 'Belgian painter', year: '2010', images: ['7.jpg'], price: '$150' },
+            { name: 'Van Gogh', location: 'Chicago painter', year: '2009', images: ['8.jpeg'], price: '$130' },
+            { name: 'Fernando Amorsolo', location: 'Italian painter', year: '2005', images: ['9.jpeg'], price: '$200' },
+            { name: 'Pablo Picasso', location: 'Spanish painter', year: '2006', images: ['10.jpeg'], price: '$220' },
+            { name: 'Henri Matisse', location: 'French artist', year: '2002', images: ['11.jpeg'], price: '$200' },
+            { name: 'Jean Antoine Watteau', location: 'French Painter', year: '2008', images: ['12.jpeg'], price: '$260' }
+        ];
+
+        // Search and filter functionality
+        const searchInput = document.getElementById("search-bar");
+        const filterIcon = document.getElementById("filter-icon");
+        const artWorkList = document.getElementById("art-work-list");
+
+        filterIcon.addEventListener("click", () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredArtWorks = artWorks.filter((artWork) => {
+                return artWork.name.toLowerCase().includes(searchTerm) || artWork.location.toLowerCase().includes(searchTerm);
+            });
+            generateArtWorkList(filteredArtWorks);
+        });
+
+        function generateArtWorkList(artWorks) {
+            const artWorkListHTML = artWorks.map((artWork) => {
+                return `
+                    <li class="art-work-item">
+                        <div class="art-work-details">
+                            ${artWork.images.map(image => `<img src="${image}" alt="${artWork.name}">`).join('')}
+                            <div>
+                                <h2>${artWork.name}</h2>
+                                <p>${artWork.location}</p>
+                                <p>Year: ${artWork.year}</p>
+                                <p>Price: ${artWork.price}</p>
+                            </div>
+                        </div>
+                    </li>
+                `;
+            }).join("");
+            artWorkList.innerHTML = artWorkListHTML;
+        }
+
+        // Generate initial art work list
+        generateArtWorkList(artWorks);
+
+        // Load collector details from local storage (if needed)
+        window.onload = function() {
+            const collectorName = localStorage.getItem('collectorName');
+            const collectorArtwork = localStorage.getItem('collectorArtwork');
+
+            if (collectorArtwork) {
+                searchInput.value = collectorArtwork;
+                filterIcon.click();
+            }
+        }
+    </script>
+</body>
+</html>

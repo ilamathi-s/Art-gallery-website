@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Artwork Gallery</h1>
+        <div id="buttons">
+            <button onclick="generateContent('Artists')">Artists</button>
+            <button onclick="generateContent('Collectors')">Collectors</button>
+            <!-- Add more buttons for other categories if needed -->
+        </div>
+        <div id="content"></div>
+    </div>
+
+    <script>
+        function generateContent(category) {
+            var contentContainer = document.getElementById('content');
+            contentContainer.innerHTML = '';
+
+            var artists = getArtistsByCategory(category);
+
+            artists.forEach(artist => {
+                var card = document.createElement('div');
+                card.className = 'card';
+
+                var cardHeader = document.createElement('div');
+                cardHeader.className = 'card-header';
+                cardHeader.innerHTML = `<h3>${artist.name}</h3><p>${artist.location}</p><p>${artist.year}</p><h4>${artist.price}</h4>`;
+
+                var cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                artist.images.forEach(image => {
+                    var img = document.createElement('img');
+                    img.src = image;
+                    img.className = 'card-image';
+
+                    // Create Buy button
+                    var buyButton = document.createElement('button');
+                    buyButton.innerText = 'Buy';
+                    buyButton.addEventListener('click', function() {
+                        alert('Your purchase of ' + artist.name + ' artwork is done!!');
+                    });
+
+                    // Create container for image and buy button
+                    var imageContainer = document.createElement('div');
+                    imageContainer.appendChild(img);
+                    imageContainer.appendChild(buyButton);
+
+                    cardBody.appendChild(imageContainer);
+                });
+
+                card.appendChild(cardHeader);
+                card.appendChild(cardBody);
+                contentContainer.appendChild(card);
+            });
+        }
+
+        function getArtistsByCategory(category) {
+            // Replace this with actual data or fetch from server
+            var data = {
+                'Artists': [
+                    {
+                        name: 'Marco Mazzoni',
+                        location: 'Italian Artist',
+                        year: '2010',
+                        images: ['1.jpg'],
+                        price: '$150'
+                    },
+                    {
+                        name: 'Paul Cadden',
+                        location: 'Scottish contemporary Artist',
+                        year: '2012',
+                        images: ['2.jpg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Leon Kossoff',
+                        location: 'British Figurative Painter',
+                        year: '2011',
+                        images: ['3.jpg'],
+                        price: '$550'
+                    },
+                    {
+                        name: 'Dennis Creffield',
+                        location: 'British Artist',
+                        year: '2014',
+                        images: ['4.jpg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Jerry LoFaro',
+                        location: 'Spanish Artist',
+                        year: '2017',
+                        images: ['5.jpg'],
+                        price: '$650'
+                    },
+                    {
+                        name: 'Salvador Dalí',
+                        location: 'Modern Artist',
+                        year: '2014',
+                        images: ['6.jpg'],
+                        price: '$350'
+                    },
+                    {
+                        name: 'James Ensor',
+                        location: 'Belgian painter',
+                        year: '2010',
+                        images: ['7.jpg'],
+                        price: '$150'
+                    }
+
+                    {
+                        name: 'Van Gogh',
+                        location: 'Chicago painter',
+                        year: '2009',
+                        images: ['8.jpeg'],
+                        price: '$130'
+                    },
+                    {
+                        name: 'Fernando Amorsolo',
+                        location: 'Italian painter',
+                        year: '2005',
+                        images: ['9.jpeg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Pablo Picasso',
+                        location: 'Spanish painter',
+                        year: '2006',
+                        images: ['10.jpeg'],
+                        price: '$220'
+                    },
+                    {
+                        name: 'Henri Matisse',
+                        location: 'French artist',
+                        year: '2002',
+                        images: ['11.jpeg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Jean Antoine Watteau',
+                        location: 'French Painter',
+                        year: '2008',
+                        images: ['12.jpeg'],
+                        price: '$260'
+                    }
+                ],
+                'Collectors': [
+                    {
+                        name: 'Marco Mazzoni',
+                        location: 'Italian Artist',
+                        year: '2010',
+                        images: ['1.jpg'],
+                        price: '$150'
+                    },
+                    {
+                        name: 'Paul Cadden',
+                        location: 'Scottish contemporary Artist',
+                        year: '2012',
+                        images: ['2.jpg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Leon Kossoff',
+                        location: 'British Figurative Painter',
+                        year: '2011',
+                        images: ['3.jpg'],
+                        price: '$550'
+                    },
+                    {
+                        name: 'Dennis Creffield',
+                        location: 'British Artist',
+                        year: '2014',
+                        images: ['4.jpg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Jerry LoFaro',
+                        location: 'Spanish Artist',
+                        year: '2017',
+                        images: ['5.jpg'],
+                        price: '$650'
+                    },
+                    {
+                        name: 'Salvador Dalí',
+                        location: 'Modern Artist',
+                        year: '2014',
+                        images: ['6.jpg'],
+                        price: '$350'
+                    },
+                    {
+                        name: 'James Ensor',
+                        location: 'Belgian painter',
+                        year: '2010',
+                        images: ['7.jpg'],
+                        price: '$150'
+                    },
+                    {
+                        name: 'Van Gogh',
+                        location: 'Chicago painter',
+                        year: '2009',
+                        images: ['8.jpeg'],
+                        price: '$130'
+                    },
+                    {
+                        name: 'Fernando Amorsolo',
+                        location: 'Italian painter',
+                        year: '2005',
+                        images: ['9.jpeg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Pablo Picasso',
+                        location: 'Spanish painter',
+                        year: '2006',
+                        images: ['10.jpeg'],
+                        price: '$220'
+                    },
+                    {
+                        name: 'Henri Matisse',
+                        location: 'French artist',
+                        year: '2002',
+                        images: ['11.jpeg'],
+                        price: '$200'
+                    },
+                    {
+                        name: 'Jean Antoine Watteau',
+                        location: 'French Painter',
+                        year: '2008',
+                        images: ['12.jpeg'],
+                        price: '$260'
+                    }
+                ],
+                'home-decor': [
+                    // Add artists for home decor...
+                ],
+                'lifestyle': [
+                    // Add artists for lifestyle...
+                ],
+                'apparel': [
+                    // Add artists for apparel...
+                ],
+                'stationery': [
+                    // Add artists for stationery...
+                ],
+                'beach': [
+                    // Add artists for beach...
+                ],
+                'miscellaneous': [
+                    // Add artists for miscellaneous...
+                ]
+            };
+
+            return data[category] || [];
+        }
+    </script>
+</body>
+</html>

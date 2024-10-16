@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collector Details</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Collector Details</h1>
+        <form id="collectorForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+            <label for="address">Address:</label>
+            <textarea id="address" required></textarea><br>
+            <label for="artwork">Preferred Artwork:</label>
+            <input type="text" id="artwork" required><br>
+            <label for="payment">Payment Method:</label>
+            <select id="payment">
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank_transfer">Bank Transfer</option>
+            </select><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('collectorForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form values
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var artwork = document.getElementById('artwork').value;
+            var payment = document.getElementById('payment').value;
+
+            // Store the collector details in local storage
+            localStorage.setItem('collectorName', name);
+            localStorage.setItem('collectorAddress', address);
+            localStorage.setItem('collectorArtwork', artwork);
+            localStorage.setItem('collectorPayment', payment);
+
+            // Redirect to the search page
+            window.location.href = 'search.html';
+        });
+    </script>
+</body>
+</html>

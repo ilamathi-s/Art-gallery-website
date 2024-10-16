@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Artist & Art</title>
+  <!--<link rel="stylesheet" href="styles.css">-->
+</head>
+<style>
+  /* styles.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+input[type="submit"]:active {
+  background-color: #3e8e41;
+}
+
+</style>
+<body>
+  <h2>Add Artist & Art</h2>
+  <form id="artistForm">
+    <label for="artistName">Artist Name:</label><br>
+    <input type="text" id="artistName" name="artistName"><br>
+    <label for="artistAddress">Artist Address:</label><br>
+    <input type="text" id="artistAddress" name="artistAddress"><br>
+    <label for="yearOfPublishing">Year of Publishing:</label><br>
+    <input type="text" id="yearOfPublishing" name="yearOfPublishing"><br>
+    <label for="artImage">Art Image:</label><br>
+    <input type="file" id="artImage" name="artImage"><br><br>
+    <button type="submit" value="Submit"  id="alertButton" width="60" height="20">Submit</button>
+  </form>
+
+ 
+</body>
+</html>
+<!-- <script src="artist.js"></script> -->
+ <script src="script.js"></script>
+
